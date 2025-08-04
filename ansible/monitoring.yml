@@ -1,0 +1,7 @@
+- name: Setup Monitoring server
+  hosts: monitoring
+
+  tasks:
+  - name: test
+  debug:
+    msg: "This is a test"
