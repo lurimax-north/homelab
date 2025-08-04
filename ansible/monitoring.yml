@@ -3,5 +3,5 @@
 
   tasks:
   - name: test
-  debug:
-    msg: "This is a test"
+    debug:
+      msg: "This is a test"
