@@ -1,3 +1,4 @@
+---
 plugin: community.general.proxmox
 user: root@pam
 password: "{{proxmox_password}}"
@@ -5,3 +6,4 @@ password: "{{proxmox_password}}"
 url: "https://192.168.0.191:8006"
 want_proxmox_nodes_ansible_host: true
 want_facts: true
+validate_certs: false
