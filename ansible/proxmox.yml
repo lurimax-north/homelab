@@ -7,3 +7,5 @@ url: "https://192.168.0.191:8006"
 want_proxmox_nodes_ansible_host: true
 want_facts: true
 validate_certs: false
+token_id: ansible
+token_secret: ea369648-6e37-4b16-804d-49164cc237bb
