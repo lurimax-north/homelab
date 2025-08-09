@@ -1,7 +1,7 @@
 ---
 plugin: community.proxmox.proxmox
 user: root@pam
-password: "{{proxmox_password}}"
+#password: "{{proxmox_password}}"
 # The Proxmox API URL
 url: "https://192.168.0.191:8006"
 want_proxmox_nodes_ansible_host: true
