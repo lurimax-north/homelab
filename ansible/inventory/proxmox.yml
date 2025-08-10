@@ -1,0 +1,18 @@
+---
+plugin: community.proxmox.proxmox
+user: root@pam
+#password: "{{proxmox_password}}"
+# The Proxmox API URL
+url: "https://192.168.0.191:8006"
+want_facts: true
+validate_certs: false
+token_id: ansible
+token_secret: ea369648-6e37-4b16-804d-49164cc237bb
+group_prefix: ""
+want_proxmox_nodes_ansible_host: false
+compose:
+#  ansible_host: proxmox_ipconfig0.ip | default(proxmox_net0.ip) | ansible.utils.ipaddr('address')
+#  ansible_host: proxmox_agent_interfaces | selectattr('name', 'in', 'eth0,ens18') | map(attribute='ip-addresses') | flatten | first | ansible.utils.ipaddr('address')
+  ansible_host: proxmox_lxc_interfaces[1]["inet"].split("/")[0] if proxmox_lxc_interfaces is defined else proxmox_agent_interfaces[1]["ip-addresses"][0].split("/")[0]
+# ansible_host: "'192.168.0.130'"
+  test_var: "'test'"
