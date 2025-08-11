@@ -1,0 +1,6 @@
+[all:vars]
+ansible_ssh_pass=
+[proxmox_lxc:vars]
+ansible_user=root
+[proxmox_qemu:vars]
+ansible_user=george

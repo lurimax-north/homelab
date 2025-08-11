@@ -1,25 +1,12 @@
 ---
 - name: Create test.example.com A record
   hosts: all
-  gather_facts: false
+  gather_facts: true
   tasks:
     - name: Create test.example.com A record
       sbarbett.pihole.local_a_record:
-        host: test.example.com
-        ip: {{host.ansible_default_ipv4.address}}
-        state: present
-        url: 
-        password: !vault |
-          $ANSIBLE_VAULT;1.1;AES256
-          64643664663134316535373563363234386632383566653062386564343139326237366232653962
-          6635393765393832663164613735383964636261613938340a636163306362633633323234313164
-          66336536613466623766626665346431386535623335346130356436663837333561616537646430
-          3235626235383233330a653561636663333365366434396633616266353630393238343233323334
-          6565
-    - name: Create test.example.com A record
-      sbarbett.pihole.local_aaaa_record:
-        host: test.example.com
-        ip: 
+        host: "{{inventory_hostname}}.internal.lurimax.dev"
+        ip: "{{hostvars[inventory_hostname]['ansible_default_ipv4']['address']}}"
         state: present
         url: "https://pi.hole"
         password: !vault |
@@ -29,3 +16,17 @@
           66336536613466623766626665346431386535623335346130356436663837333561616537646430
           3235626235383233330a653561636663333365366434396633616266353630393238343233323334
           6565
+    - name: Create test.example.com A record
+      sbarbett.pihole.local_cname:
+        host: test.example.com
+        target: "npm.lurimax.dev"
+        state: present
+        url: "https://pi.hole"
+        password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          64643664663134316535373563363234386632383566653062386564343139326237366232653962
+          6635393765393832663164613735383964636261613938340a636163306362633633323234313164
+          66336536613466623766626665346431386535623335346130356436663837333561616537646430
+          3235626235383233330a653561636663333365366434396633616266353630393238343233323334
+          6565
+      when: frontend_port is defined
